@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" fill="none">
+  <rect width="800" height="450" fill="#12121a"/>
+  <rect x="40" y="40" width="200" height="370" rx="8" fill="#1a1a27"/>
+  <rect x="260" y="40" width="500" height="180" rx="8" fill="#1a1a27"/>
+  <rect x="260" y="240" width="240" height="170" rx="8" fill="#1a1a27"/>
+  <rect x="520" y="240" width="240" height="170" rx="8" fill="#1a1a27"/>
+  <rect x="60" y="70" width="160" height="12" rx="4" fill="#7c3aed" opacity="0.5"/>
+  <rect x="60" y="100" width="120" height="8" rx="3" fill="#2a2a3d"/>
+  <rect x="60" y="130" width="140" height="8" rx="3" fill="#2a2a3d"/>
+  <rect x="60" y="160" width="100" height="8" rx="3" fill="#2a2a3d"/>
+  <path d="M280 180 L340 120 L400 160 L480 100 L560 140 L720 80" stroke="#06b6d4" stroke-width="3" fill="none"/>
+  <circle cx="340" cy="120" r="6" fill="#06b6d4"/>
+  <circle cx="480" cy="100" r="6" fill="#ec4899"/>
+  <circle cx="720" cy="80" r="6" fill="#7c3aed"/>
+  <rect x="280" y="270" width="200" height="120" rx="6" fill="#7c3aed" opacity="0.15"/>
+  <rect x="540" y="270" width="200" height="120" rx="6" fill="#ec4899" opacity="0.15"/>
+  <text x="400" y="430" text-anchor="middle" font-family="system-ui,sans-serif" font-size="16" fill="#9494a8">Analytics Dashboard</text>
+</svg>
