@@ -1,0 +1,145 @@
+import { useRef } from "react";
+import { motion, useInView } from "motion/react";
+
+const FACTS = [
+  { label: "School", value: "Grafisch Lyceum Utrecht" },
+  { label: "Richting", value: "Applicatie- & mediaontwikkeling" },
+  { label: "Status", value: "Beschikbaar voor stage" },
+  { label: "Locatie", value: "Utrecht, NL" },
+];
+
+export function About() {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
+
+  return (
+    <section id="about" ref={ref} className="py-32 px-6 md:px-10 relative overflow-hidden">
+      {/* Section accent stripe */}
+      <motion.div
+        initial={{ scaleX: 0 }}
+        animate={inView ? { scaleX: 1 } : {}}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        className="absolute top-0 left-0 h-[3px] w-full origin-left"
+        style={{ background: "var(--live-accent)" }}
+      />
+
+      <div className="max-w-7xl mx-auto">
+        {/* Section label */}
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={inView ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 0.5 }}
+          className="flex items-center gap-4 mb-16"
+        >
+          <span
+            className="font-['Space_Mono'] text-xs uppercase tracking-[0.4em]"
+            style={{ color: "var(--live-accent)" }}
+          >
+            01
+          </span>
+          <div className="h-px flex-1 max-w-[80px]" style={{ background: "var(--live-accent)" }} />
+          <span className="font-['Space_Mono'] text-xs uppercase tracking-[0.4em] text-[#555]">
+            Over mij
+          </span>
+        </motion.div>
+
+        <div className="grid md:grid-cols-[1fr_1.2fr] gap-16 items-start">
+          {/* Left: big number + heading */}
+          <div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={inView ? { opacity: 1 } : {}}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="font-['Archivo_Black'] leading-none mb-4 select-none"
+              style={{
+                fontSize: "clamp(6rem, 16vw, 12rem)",
+                color: "var(--live-accent)",
+                opacity: 0.15,
+                lineHeight: 1,
+              }}
+            >
+              01
+            </motion.div>
+
+            <motion.h2
+              initial={{ opacity: 0, y: 30 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="font-['Archivo_Black'] text-[#f5f5f5] -mt-8 relative z-10"
+              style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)" }}
+            >
+              Hallo,<br />
+              ik ben <span style={{ color: "var(--live-accent)" }}>Tobias</span>
+            </motion.h2>
+
+            {/* Fact grid */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="mt-10 grid grid-cols-2 gap-px bg-white/5"
+            >
+              {FACTS.map(({ label, value }) => (
+                <div key={label} className="bg-[#0c0c0c] p-4">
+                  <p className="font-['Space_Mono'] text-xs text-[#555] uppercase tracking-widest mb-1">{label}</p>
+                  <p className="text-[#f5f5f5] text-sm font-medium">{value}</p>
+                </div>
+              ))}
+            </motion.div>
+          </div>
+
+          {/* Right: text */}
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.3 }}
+            className="pt-4 md:pt-16"
+          >
+            <div className="space-y-5 text-[#777] text-lg leading-relaxed font-light">
+              <p>
+                Ik ben een <span className="text-[#f5f5f5] font-medium">fullstack webdeveloper in opleiding</span> met
+                een passie voor animatie, interactie en alles wat digitaal is. Ik bouw van database
+                tot pixel — van backend logica tot wat jij op je scherm ziet.
+              </p>
+              <p>
+                Bij het Grafisch Lyceum Utrecht leer ik het vak, maar mijn grootste leraar is
+                gewoon <span className="text-[#f5f5f5] font-medium">dingen bouwen</span>. Projecten
+                starten, kapotmaken, opnieuw bouwen — zo leer ik het snelste.
+              </p>
+              <p>
+                Ik hou van websites die iets <em>doen</em>. Die bewegen, reageren, verrassen.
+                Niet alleen een pagina met tekst, maar een{" "}
+                <span className="text-[#f5f5f5] font-medium">ervaring</span>.
+              </p>
+            </div>
+
+            {/* Tags */}
+            <div className="flex flex-wrap gap-2 mt-8">
+              {["Creatief", "Detail-gericht", "Snelle leerling", "Teamspeler", "Open voor stage"].map((t) => (
+                <span
+                  key={t}
+                  className="font-['Space_Mono'] text-xs px-3 py-1.5 border uppercase tracking-wider transition-all duration-200"
+                  style={{
+                    borderColor: "var(--live-accent)",
+                    color: "var(--live-accent)",
+                  }}
+                >
+                  {t}
+                </span>
+              ))}
+            </div>
+
+            {/* Photo placeholder */}
+            <div
+              className="mt-10 w-full max-w-xs aspect-square border-2 border-dashed flex flex-col items-center justify-center gap-2"
+              style={{ borderColor: "rgba(255,255,255,0.1)" }}
+            >
+              <span className="text-4xl">📷</span>
+              <span className="font-['Space_Mono'] text-xs text-[#444] uppercase tracking-wider">Foto later</span>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+}
