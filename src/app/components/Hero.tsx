@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
+import { InteractiveSphere } from "./InteractiveSphere";
 
 const ROLES = ["Fullstack Dev", "UI Builder", "Student @ GLU", "React Lover", "PHP Wielder"];
 
@@ -136,75 +137,88 @@ export function Hero() {
       </div>
 
       <div className="relative z-10 max-w-7xl w-full">
-        <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="font-['Space_Mono'] text-sm text-[#555] uppercase tracking-[0.3em] mb-6"
-        >
-          Portfolio — 2025
-        </motion.div>
-
-        {/* Colored letters */}
-        <h1
-          className="font-['Archivo_Black'] leading-none mb-4 select-none"
-          style={{ fontSize: "clamp(4.5rem, 18vw, 17rem)" }}
-        >
-          {"TOBIAS".split("").map((ch, i) => (
-            <motion.span
-              key={i}
-              initial={{ opacity: 0, y: 60 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 + i * 0.07, ease: [0.22, 1, 0.36, 1] }}
-              style={{ color: LETTER_COLORS[i] }}
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-12 items-center">
+          <div>
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="font-['Space_Mono'] text-sm text-[#555] uppercase tracking-[0.3em] mb-6"
             >
-              {ch}
-            </motion.span>
-          ))}
-        </h1>
+              Portfolio — 2025
+            </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, scaleX: 0 }}
-          animate={{ opacity: 1, scaleX: 1 }}
-          transition={{ duration: 0.7, delay: 0.65, origin: "left" }}
-          className="h-[3px] w-full max-w-[32rem] mb-5 origin-left"
-          style={{ background: "linear-gradient(90deg, #00e5ff, #ff2d78, #c8ff00, #ff5c00, #b14eff)" }}
-        />
+            {/* Colored letters */}
+            <h1
+              className="font-['Archivo_Black'] leading-none mb-4 select-none"
+              style={{ fontSize: "clamp(4.5rem, 18vw, 17rem)" }}
+            >
+              {"TOBIAS".split("").map((ch, i) => (
+                <motion.span
+                  key={i}
+                  initial={{ opacity: 0, y: 60 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.2 + i * 0.07, ease: [0.22, 1, 0.36, 1] }}
+                  style={{ color: LETTER_COLORS[i] }}
+                >
+                  {ch}
+                </motion.span>
+              ))}
+            </h1>
 
-        <RotatingRole />
+            <motion.div
+              initial={{ opacity: 0, scaleX: 0 }}
+              animate={{ opacity: 1, scaleX: 1 }}
+              transition={{ duration: 0.7, delay: 0.65 }}
+              className="h-[3px] w-full max-w-[32rem] mb-5 origin-left"
+              style={{ background: "linear-gradient(90deg, #00e5ff, #ff2d78, #c8ff00, #ff5c00, #b14eff)" }}
+            />
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.9 }}
-          className="text-[#666] text-base md:text-lg max-w-md mt-6 leading-relaxed font-light"
-        >
-          Ik bouw dingen voor het web. Student aan het{" "}
-          <span className="text-[#f5f5f5] font-medium">Grafisch Lyceum Utrecht</span>,{" "}
-          geobsedeerd door animatie, interactie en code.
-        </motion.p>
+            <RotatingRole />
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 1.1 }}
-          className="flex flex-wrap gap-4 mt-10"
-        >
-          <button
-            onClick={() => document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" })}
-            className="font-['Archivo_Black'] text-sm px-7 py-3.5 uppercase tracking-wider transition-all duration-300 hover:scale-105 active:scale-95"
-            style={{ background: "var(--live-accent)", color: "var(--live-accent-fg)" }}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.9 }}
+              className="text-[#666] text-base md:text-lg max-w-md mt-6 leading-relaxed font-light"
+            >
+              Ik bouw dingen voor het web. Student aan het{" "}
+              <span className="text-[#f5f5f5] font-medium">Grafisch Lyceum Utrecht</span>,{" "}
+              geobsedeerd door animatie, interactie en code.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 1.1 }}
+              className="flex flex-wrap gap-4 mt-10"
+            >
+              <button
+                onClick={() => document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" })}
+                className="font-['Archivo_Black'] text-sm px-7 py-3.5 uppercase tracking-wider transition-all duration-300 hover:scale-105 active:scale-95"
+                style={{ background: "var(--live-accent)", color: "var(--live-accent-fg)" }}
+              >
+                Bekijk werk →
+              </button>
+              <button
+                onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
+                className="font-['Archivo_Black'] text-sm px-7 py-3.5 border uppercase tracking-wider text-[#f5f5f5] hover:border-white/40 transition-all duration-200"
+                style={{ borderColor: "rgba(255,255,255,0.15)" }}
+              >
+                Contact
+              </button>
+            </motion.div>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            className="flex justify-center items-center lg:justify-end"
           >
-            Bekijk werk →
-          </button>
-          <button
-            onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
-            className="font-['Archivo_Black'] text-sm px-7 py-3.5 border uppercase tracking-wider text-[#f5f5f5] hover:border-white/40 transition-all duration-200"
-            style={{ borderColor: "rgba(255,255,255,0.15)" }}
-          >
-            Contact
-          </button>
-        </motion.div>
+            <InteractiveSphere />
+          </motion.div>
+        </div>
       </div>
 
       {/* Scroll indicator */}

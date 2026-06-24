@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { motion, useInView } from "motion/react";
+import profilePhoto from "../../assets/foto-portofolio.png";
 
 const FACTS = [
   { label: "School", value: "Grafisch Lyceum Utrecht" },
@@ -129,13 +130,26 @@ export function About() {
               ))}
             </div>
 
-            {/* Photo placeholder */}
+            {/* Profile Photo */}
             <div
-              className="mt-10 w-full max-w-xs aspect-square border-2 border-dashed flex flex-col items-center justify-center gap-2"
-              style={{ borderColor: "rgba(255,255,255,0.1)" }}
+              className="mt-10 relative group max-w-xs aspect-square overflow-hidden border transition-all duration-500 bg-[#111]"
+              style={{ borderColor: "rgba(255,255,255,0.08)" }}
             >
-              <span className="text-4xl">📷</span>
-              <span className="font-['Space_Mono'] text-xs text-[#444] uppercase tracking-wider">Foto later</span>
+              {/* Subtle accent glow behind photo on hover */}
+              <div
+                className="absolute inset-0 opacity-0 group-hover:opacity-[0.08] blur-xl transition-opacity duration-500 pointer-events-none"
+                style={{ background: "var(--live-accent)" }}
+              />
+              <img
+                src={profilePhoto}
+                alt="Tobias"
+                className="w-full h-full object-cover grayscale group-hover:grayscale-0 scale-100 group-hover:scale-[1.03] transition-all duration-700 ease-out"
+              />
+              {/* Thin overlay border */}
+              <div
+                className="absolute inset-0 border pointer-events-none transition-colors duration-500 group-hover:border-white/20"
+                style={{ borderColor: "rgba(255,255,255,0.04)" }}
+              />
             </div>
           </motion.div>
         </div>
