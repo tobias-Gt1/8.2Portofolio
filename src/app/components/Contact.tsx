@@ -60,14 +60,14 @@ export function Contact() {
             </h2>
 
             <p className="text-[#666] text-lg leading-relaxed mb-10 font-light max-w-sm">
-              Project in gedachten? Op zoek naar een stagair? Of gewoon even voorstellen?
-              Stuur een berichtje — ik reageer snel.
+              Project in gedachten? Op zoek naar een stagair? Of gewoon even vraag?
+              Stuur een berichtje.
             </p>
 
             <div className="space-y-4 mb-10">
               <div>
                 <p className="font-['Space_Mono'] text-xs text-[#444] uppercase tracking-widest mb-1">Email</p>
-                <p className="text-[#f5f5f5]">tobias@example.com</p>
+                <p className="text-[#f5f5f5]">tobiasschuttevaer@icloud.com</p>
               </div>
               <div>
                 <p className="font-['Space_Mono'] text-xs text-[#444] uppercase tracking-widest mb-1">Locatie</p>
@@ -77,8 +77,8 @@ export function Contact() {
 
             <div className="flex gap-3">
               {[
-                { icon: Github, label: "GitHub", href: "https://github.com" },
-                { icon: Linkedin, label: "LinkedIn", href: "#" },
+                { icon: Github, label: "GitHub", href: "https://github.com/tobias-Gt1" },
+                { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/tobias-schuttevaer-40187a331/" },
               ].map(({ icon: Icon, label, href }) => (
                 <a
                   key={label}
@@ -145,7 +145,7 @@ export function Contact() {
                     rows={4}
                     value={form.message}
                     onChange={(e) => setForm({ ...form, message: e.target.value })}
-                    placeholder="Vertel me over je project..."
+                    placeholder="Vraag maar raak"
                     className="w-full bg-transparent text-[#f5f5f5] placeholder-[#333] text-lg pb-4 outline-none resize-none focus:placeholder-[#555] transition-colors"
                   />
                 </div>

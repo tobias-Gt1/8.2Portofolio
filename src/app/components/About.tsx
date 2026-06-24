@@ -4,8 +4,8 @@ import profilePhoto from "../../assets/foto-portofolio.png";
 
 const FACTS = [
   { label: "School", value: "Grafisch Lyceum Utrecht" },
-  { label: "Richting", value: "Applicatie- & mediaontwikkeling" },
-  { label: "Status", value: "Beschikbaar voor stage" },
+  { label: "Richting", value: "WebDeveloper & mediaontwikkeling" },
+  { label: "Status", value: "Beschikbaar voor stage/ MBO opleiding aan het volgen" },
   { label: "Locatie", value: "Utrecht, NL" },
 ];
 
@@ -98,17 +98,17 @@ export function About() {
           >
             <div className="space-y-5 text-[#777] text-lg leading-relaxed font-light">
               <p>
-                Ik ben een <span className="text-[#f5f5f5] font-medium">fullstack webdeveloper in opleiding</span> met
-                een passie voor animatie, interactie en alles wat digitaal is. Ik bouw van database
+                Ik ben een <span className="text-[#f5f5f5] font-medium">fullstack webdeveloper in opleiding</span> waarbij
+                ik voornamelijk animatie, interactie voornamelijk super vet vindt. Ik bouw van database
                 tot pixel — van backend logica tot wat jij op je scherm ziet.
               </p>
               <p>
                 Bij het Grafisch Lyceum Utrecht leer ik het vak, maar mijn grootste leraar is
                 gewoon <span className="text-[#f5f5f5] font-medium">dingen bouwen</span>. Projecten
-                starten, kapotmaken, opnieuw bouwen — zo leer ik het snelste.
+                starten, kapotmaken, fouten maken, opnieuw bouwen — zo leer ik het snelste.
               </p>
               <p>
-                Ik hou van websites die iets <em>doen</em>. Die bewegen, reageren, verrassen.
+                Ik hou van websites die iets <em>doen</em>. Die bewegen, reageren, en een gevoel geven.
                 Niet alleen een pagina met tekst, maar een{" "}
                 <span className="text-[#f5f5f5] font-medium">ervaring</span>.
               </p>
@@ -116,7 +116,7 @@ export function About() {
 
             {/* Tags */}
             <div className="flex flex-wrap gap-2 mt-8">
-              {["Creatief", "Detail-gericht", "Snelle leerling", "Teamspeler", "Open voor stage"].map((t) => (
+              {["Creatief", "Detail-gericht", "Lerend", "Teamspeler", "Open voor stage"].map((t) => (
                 <span
                   key={t}
                   className="font-['Space_Mono'] text-xs px-3 py-1.5 border uppercase tracking-wider transition-all duration-200"

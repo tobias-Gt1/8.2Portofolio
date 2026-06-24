@@ -184,7 +184,7 @@ export function Hero() {
             >
               Ik bouw dingen voor het web. Student aan het{" "}
               <span className="text-[#f5f5f5] font-medium">Grafisch Lyceum Utrecht</span>,{" "}
-              geobsedeerd door animatie, interactie en code.
+              geintresseerd in animatie en bouwen van creatieve dingen.
             </motion.p>
 
             <motion.div

@@ -1,16 +1,25 @@
 import { useRef, useState } from "react";
 import { motion, useInView, AnimatePresence } from "motion/react";
 import { Github, ExternalLink, ArrowUpRight, X } from "lucide-react";
+import { Link } from "react-router-dom";
+import happyHerbivoreImg from "../../assets/Happyherbivorepic.png";
 
-const PROJECTS = [
+export const PROJECTS = [
   {
     num: "01",
     title: "CMS Webshop",
-    desc: "Custom-gebouwd Content Management Systeem met e-commerce. Van productbeheer tot bestellingen — volledig van scratch.",
+    desc: "Custom-gebouwd Content Management Systeem met e-commerce. Van productbeheer tot bestellingen.",
     tags: ["PHP", "MySQL", "JavaScript", "CSS"],
     color: "#00e5ff",
-    github: "https://github.com",
+    github: "https://github.com/tobias-Gt1/5.2CMS",
     live: null,
+    image: null,
+    slug: "cms-webshop",
+    details: {
+      fullDescription: "",
+      gallery: [],
+      videoUrl: null,
+    },
   },
   {
     num: "02",
@@ -18,35 +27,63 @@ const PROJECTS = [
     desc: "Dynamische bioscoopwebsite met filmprogrammering en ticketreservering. Bezoekers boeken eenvoudig hun plek.",
     tags: ["PHP", "JavaScript", "CSS", "MySQL"],
     color: "#ff2d78",
-    github: "https://github.com",
+    github: "https://github.com/tobias-Gt1/AnnexBiosMontfoort",
     live: null,
+    image: null,
+    slug: "annexbios",
+    details: {
+      fullDescription: "",
+      gallery: [],
+      videoUrl: null,
+    },
   },
   {
     num: "03",
     title: "Utrechts Archief",
-    desc: "Digitaal platform voor historische collecties van het Utrechts Archief. Toegankelijk voor het grote publiek.",
-    tags: ["WordPress", "PHP", "CSS", "JavaScript"],
+    desc: "Digitaal platform voor historische collecties van het Utrechts Archief.",
+    tags: ["PHP", "CSS", "JavaScript"],
     color: "#c8ff00",
-    github: "https://github.com",
+    github: "https://github.com/tobias-Gt1/6.1UAopdracht",
     live: null,
+    image: null,
+    slug: "utrechts-archief",
+    details: {
+      fullDescription: "",
+      gallery: [],
+      videoUrl: null,
+    },
   },
   {
     num: "04",
     title: "Kiosk Happy Herbivore",
-    desc: "Touchscreen bestelterminal voor plantaardige snacks. Intuïtief, snel, en volledig zelfbedieningsbaar.",
-    tags: ["React", "Node.js", "CSS"],
+    desc: "Touchscreen bestelterminal voor plantaardige snacks. snel, en volledig zelfbedieningsbaar.",
+    tags: ["PHP", "JavaScript", "CSS"],
     color: "#ff5c00",
-    github: "https://github.com",
-    live: null,
+    github: "https://github.com/tobias-Gt1/7.1KioskOpdracht",
+    live: "https://u240173.gluwebsite.nl/kiosksite/index.html",
+    image: happyHerbivoreImg,
+    slug: "kiosk-happy-herbivore",
+    details: {
+      fullDescription: "",
+      gallery: [],
+      videoUrl: null,
+    },
   },
   {
     num: "05",
     title: "U Festival App",
     desc: "Mobiel-first festivalapp voor U Festival Utrecht. Line-up, persoonlijke agenda, en plattegrond in één.",
-    tags: ["React", "JavaScript", "CSS", "Node.js"],
+    tags: ["PHP", "JavaScript", "CSS", "Node.js"],
     color: "#b14eff",
     github: "https://github.com",
     live: null,
+    image: null,
+    slug: "u-festival-app",
+    details: {
+      fullDescription: "",
+      gallery: [],
+      videoUrl: null,
+    },
   },
 ];
 
@@ -173,15 +210,21 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
                 {project.title}
               </h3>
 
-              {/* Placeholder image */}
+              {/* Project image */}
               <div
                 className="w-full aspect-video mb-6 flex items-center justify-center relative overflow-hidden"
                 style={{ background: `${project.color}10`, border: `1px solid ${project.color}20` }}
               >
-                <span className="text-5xl">🖥️</span>
-                <span className="absolute bottom-2 right-3 font-['Space_Mono'] text-xs" style={{ color: `${project.color}50` }}>
-                  Afbeelding later
-                </span>
+                {project.image ? (
+                  <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
+                ) : (
+                  <>
+                    <span className="text-5xl">🖥️</span>
+                    <span className="absolute bottom-2 right-3 font-['Space_Mono'] text-xs" style={{ color: `${project.color}50` }}>
+                      Afbeelding later
+                    </span>
+                  </>
+                )}
               </div>
 
               <p className="text-[#777] leading-relaxed mb-6 text-sm">{project.desc}</p>
@@ -207,21 +250,25 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
                 >
                   <Github size={14} /> GitHub
                 </a>
-                {project.live ? (
-                  <a
-                    href={project.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-sm px-5 py-2.5 font-['Archivo_Black'] uppercase tracking-wider transition-all duration-200 hover:scale-105"
-                    style={{ background: project.color, color: "#0c0c0c" }}
-                  >
-                    <ExternalLink size={14} /> Live
-                  </a>
-                ) : (
-                  <span className="flex items-center gap-2 text-sm px-5 py-2.5 text-[#444] border border-white/5 font-['Space_Mono']">
-                    Binnenkort live
-                  </span>
-                )}
+                 {project.live ? (
+                   <a
+                     href={project.live}
+                     target="_blank"
+                     rel="noopener noreferrer"
+                     className="flex items-center gap-2 text-sm px-5 py-2.5 font-['Archivo_Black'] uppercase tracking-wider transition-all duration-200 hover:scale-105"
+                     style={{ background: project.color, color: "#0c0c0c" }}
+                   >
+                     <ExternalLink size={14} /> Live
+                   </a>
+                 ) : (
+                   <Link
+                     to={`/projecten/${project.slug}`}
+                     className="flex items-center gap-2 text-sm px-5 py-2.5 font-['Archivo_Black'] uppercase tracking-wider transition-all duration-200 hover:scale-105"
+                     style={{ background: project.color, color: "#0c0c0c" }}
+                   >
+                     <ExternalLink size={14} /> Meer Info
+                   </Link>
+                 )}
               </div>
             </motion.div>
           </motion.div>

@@ -6,13 +6,13 @@ const SKILL_GROUPS = [
     category: "Frontend",
     color: "#c8ff00",
     fg: "#0c0c0c",
-    skills: ["HTML5", "CSS3", "JavaScript", "React", "Tailwind CSS", "Responsive Design", "Animaties"],
+    skills: ["HTML", "CSS", "JavaScript", "React", "Tailwind CSS", "Responsive Design", "UI"],
   },
   {
     category: "Backend",
     color: "#00e5ff",
     fg: "#0c0c0c",
-    skills: ["PHP", "Node.js", "MySQL", "REST API", "MVC", "Server-side rendering"],
+    skills: ["PHP", "Node.js", "MySQL", "API", "Database Design", "Authentication"],
   },
   {
     category: "CMS & Tools",
@@ -24,7 +24,7 @@ const SKILL_GROUPS = [
     category: "Aan het leren",
     color: "#b14eff",
     fg: "#f5f5f5",
-    skills: ["TypeScript", "Next.js", "Docker", "GraphQL"],
+    skills: ["TypeScript", "Next.js", "Docker", "motion design"],
   },
 ];
 
