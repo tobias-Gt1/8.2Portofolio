@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
+import { useState } from "react";
 import { motion } from "motion/react";
-import { ArrowLeft, Github, ExternalLink } from "lucide-react";
+import { ArrowLeft, Github, ExternalLink, X } from "lucide-react";
 import { PROJECTS } from "./Projects";
 import type { Project } from "./Projects";
 
@@ -25,6 +26,9 @@ export default function ProjectDetail() {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
   const project = PROJECTS.find((p) => p.slug === slug) as Project | undefined;
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const hasGallery = (project?.details.gallery?.length ?? 0) > 0;
+  const showCmsScreenshotPlaceholders = project?.slug === "cms-webshop" && !hasGallery;
 
   if (!project) {
     return (
@@ -56,7 +60,12 @@ export default function ProjectDetail() {
             {project.title}
           </h1>
 
-          <div className="w-full aspect-video mb-8 relative overflow-hidden" style={{ background: `${project.color}10`, border: `1px solid ${project.color}20` }}>
+          <button
+            type="button"
+            onClick={() => project.image && setSelectedImage(project.image)}
+            className="w-full aspect-video mb-8 relative overflow-hidden text-left"
+            style={{ background: `${project.color}10`, border: `1px solid ${project.color}20` }}
+          >
             {project.image ? (
               <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
             ) : (
@@ -64,7 +73,7 @@ export default function ProjectDetail() {
                 <span className="text-6xl opacity-30">🖥️</span>
               </div>
             )}
-          </div>
+          </button>
 
           <p className="text-[#aaa] leading-relaxed mb-8 text-base max-w-3xl">{project.desc}</p>
 
@@ -114,15 +123,40 @@ export default function ProjectDetail() {
                 </DetailSection>
               )}
 
-              {project.details.gallery && project.details.gallery.length > 0 && (
+              {(hasGallery || showCmsScreenshotPlaceholders) && (
                 <DetailSection title="Galerij" color={project.color}>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {project.details.gallery.map((src, idx) => (
-                      <div key={idx} className="aspect-video overflow-hidden" style={{ background: `${project.color}10`, border: `1px solid ${project.color}20` }}>
-                        <img src={src} alt={`${project.title} ${idx + 1}`} className="w-full h-full object-cover" />
-                      </div>
-                    ))}
-                  </div>
+                  {hasGallery ? (
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {project.details.gallery.map((src, idx) => (
+                        <button
+                          key={idx}
+                          type="button"
+                          onClick={() => setSelectedImage(src)}
+                          className="aspect-video overflow-hidden text-left"
+                          style={{ background: `${project.color}10`, border: `1px solid ${project.color}20` }}
+                        >
+                          <img src={src} alt={`${project.title} ${idx + 1}`} className="w-full h-full object-cover transition-transform duration-300 hover:scale-[1.03]" />
+                        </button>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {[
+                        "Voeg hier screenshot 1 toe",
+                        "Voeg hier screenshot 2 toe",
+                        "Voeg hier screenshot 3 toe",
+                        "Voeg hier screenshot 4 toe",
+                      ].map((label) => (
+                        <div
+                          key={label}
+                          className="aspect-video overflow-hidden flex items-center justify-center text-center p-6"
+                          style={{ background: `${project.color}08`, border: `1px dashed ${project.color}35` }}
+                        >
+                          <span className="font-['Space_Mono'] text-sm text-[#888]">{label}</span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </DetailSection>
               )}
 
@@ -143,6 +177,32 @@ export default function ProjectDetail() {
           )}
         </motion.div>
       </div>
+
+      {selectedImage && (
+        <div
+          className="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm flex items-center justify-center p-4"
+          onClick={() => setSelectedImage(null)}
+        >
+          <div
+            className="relative w-full max-w-6xl max-h-[90vh] overflow-hidden"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              type="button"
+              onClick={() => setSelectedImage(null)}
+              className="absolute top-3 right-3 z-10 rounded-full bg-black/70 text-white p-2 hover:bg-black transition-colors"
+              aria-label="Sluiten"
+            >
+              <X size={18} />
+            </button>
+            <img
+              src={selectedImage}
+              alt={project.title}
+              className="w-full max-h-[90vh] object-contain bg-black"
+            />
+          </div>
+        </div>
+      )}
     </section>
   );
 }

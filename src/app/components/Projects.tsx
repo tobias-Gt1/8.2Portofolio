@@ -2,7 +2,13 @@ import { useRef, useState } from "react";
 import { motion, useInView, AnimatePresence } from "motion/react";
 import { Github, ExternalLink, ArrowUpRight, X } from "lucide-react";
 import { Link } from "react-router-dom";
-import happyHerbivoreImg from "../../assets/Happyherbivorepic.png";
+
+const happyHerbivoreImg = new URL("../../assets/Happyherbivorepic.png", import.meta.url).href;
+const cmsHomeImg = new URL("../../../dist/assets/5.2home.png", import.meta.url).href;
+const cmsCartImg = new URL("../../../dist/assets/5.2cart.png", import.meta.url).href;
+const cmsCapsImg = new URL("../../../dist/assets/5.2caps.png", import.meta.url).href;
+const cmsEditImg = new URL("../../../dist/assets/5.2bewerken.png", import.meta.url).href;
+const cmsAdminImg = new URL("../../../dist/assets/5.2admin.png", import.meta.url).href;
 
 export const PROJECTS = [
   {
@@ -13,11 +19,12 @@ export const PROJECTS = [
     color: "#00e5ff",
     github: "https://github.com/tobias-Gt1/5.2CMS",
     live: null,
-    image: null,
+    image: cmsHomeImg,
     slug: "cms-webshop",
     details: {
-      fullDescription: "",
-      gallery: [],
+      fullDescription:
+        "Dit is een custom-gebouwd Content Management Systeem met e-commerce functionaliteit. Het systeem biedt een uitgebreide interface voor productbeheer, klantbeheer en ordertoezicht.",
+      gallery: [cmsHomeImg, cmsAdminImg, cmsEditImg, cmsCartImg, cmsCapsImg],
       videoUrl: null,
     },
   },
@@ -71,23 +78,24 @@ export const PROJECTS = [
   },
   {
     num: "05",
-    title: "U Festival App",
-    desc: "Mobiel-first festivalapp voor U Festival Utrecht. Line-up, persoonlijke agenda, en plattegrond in één.",
-    tags: ["PHP", "JavaScript", "CSS", "Node.js"],
+    title: "Scouting Nederland",
+    desc: "Opdracht gebouwd met React, Vite en Tailwind CSS voor Scouting Nederland. Een overzichtelijke en responsieve webapplicatie.",
+    tags: ["React", "Vite", "Tailwind CSS"],
     color: "#b14eff",
     github: "https://github.com",
     live: null,
     image: null,
-    slug: "u-festival-app",
+    slug: "scouting-nederland",
     details: {
-      fullDescription: "",
+      fullDescription:
+        "Deze opdracht is gemaakt met React, Vite en Tailwind CSS. De focus lag op een strakke, responsieve ervaring met een duidelijke visuele structuur. Foto's kunnen later worden toegevoegd.",
       gallery: [],
       videoUrl: null,
     },
   },
 ];
 
-type Project = typeof PROJECTS[0];
+export type Project = (typeof PROJECTS)[number];
 
 function ProjectRow({ project, index }: { project: Project; index: number }) {
   const ref = useRef<HTMLDivElement>(null);

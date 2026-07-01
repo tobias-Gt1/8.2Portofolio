@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "motion/react";
-import profilePhoto from "../../assets/foto-portofolio.png";
+
+const profilePhoto = new URL("../../assets/foto-portofolio.png", import.meta.url).href;
 
 const FACTS = [
   { label: "School", value: "Grafisch Lyceum Utrecht" },
